@@ -10,7 +10,7 @@ const Wheel = dynamic(
 );
 
 // Truncates long prize names for the wheel display only
-function truncateText(text, maxLength = 13) {
+function truncateText(text, maxLength = 25) {
   if (!text) return "";
   if (text.length <= maxLength) return text;
   return text.substring(0, maxLength - 1) + "…";
@@ -236,7 +236,7 @@ export default function Home() {
                 data={wheelData}
                 backgroundColors={backgroundColors}
                 textColors={["#ffffff"]}
-                fontSize={11}
+                fontSize={9}
                 outerBorderWidth={4}
                 outerBorderColor="#7c3aed"
                 innerRadius={10}
