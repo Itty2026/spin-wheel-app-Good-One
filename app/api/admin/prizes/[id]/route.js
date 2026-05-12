@@ -11,7 +11,13 @@ export async function PUT(request, context) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const id = context.params.id;
+  // Fix: await params for Next.js 15
+  const { id } = await context.params;
+
+  if (!id) {
+    return NextResponse.json({ error: "Missing prize ID" }, { status: 400 });
+  }
+
   const body = await request.json();
   const { name, color, active, sort_order } = body;
 
@@ -21,7 +27,7 @@ export async function PUT(request, context) {
       name,
       color,
       active,
-      sort_order,
+      sort_order: Number(sort_order), // Fix: convert to number to avoid bigint error
     })
     .eq("id", id)
     .select()
@@ -39,7 +45,12 @@ export async function DELETE(request, context) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const id = context.params.id;
+  // Fix: await params for Next.js 15
+  const { id } = await context.params;
+
+  if (!id) {
+    return NextResponse.json({ error: "Missing prize ID" }, { status: 400 });
+  }
 
   const { error } = await supabaseAdmin
     .from("prizes")
