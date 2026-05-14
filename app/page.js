@@ -180,7 +180,7 @@ export default function Home() {
       )}
 
       <div className="bg-white shadow-2xl rounded-3xl p-8 max-w-xl w-full flex flex-col items-center">
-        <img src="/logo.png" alt="Special Advantage" className="h-20 mb-2 object-contain" />
+        <img    src="/spin-logo.png"    alt="Spin the Wheel - CM Incentive Program"    className="w-72 mb-2 object-contain"  />
         <h1 className="text-4xl font-extrabold mb-1 text-purple-700 text-center">
           Spin to Win!
         </h1>
