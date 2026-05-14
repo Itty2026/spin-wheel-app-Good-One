@@ -180,7 +180,11 @@ export default function Home() {
       )}
 
       <div className="bg-white shadow-2xl rounded-3xl p-8 max-w-xl w-full flex flex-col items-center">
-        <img    src="/spin-logo.png"    alt="Spin the Wheel - CM Incentive Program"    className="w-72 mb-2 object-contain"  />
+       <img 
+  src="/spin-logo.png" 
+  alt="Spin the Wheel - CM Incentive Program" 
+  className="w-80 mb-1 object-contain" 
+/>
         <h1 className="text-4xl font-extrabold mb-1 text-purple-700 text-center">
           Spin to Win!
         </h1>
@@ -230,29 +234,49 @@ export default function Home() {
             ) : prizes.length === 0 ? (
                <p className="mb-6 text-red-600">No active prizes found.</p>
             ) : (
-              <Wheel
-                mustStartSpinning={mustSpin}
-                prizeNumber={prizeNumber}
-                data={wheelData}
-                backgroundColors={backgroundColors}
-                textColors={["#ffffff"]}
-                fontSize={9}
-                outerBorderWidth={4}
-                outerBorderColor="#7c3aed"
-                innerRadius={10}
-                innerBorderWidth={2}
-                innerBorderColor="#ede9fe"
-                radiusLineWidth={1}
-                radiusLineColor="rgba(255,255,255,0.5)"
-                textDistance={68}
-                spinDuration={0.9}
-                onStopSpinning={async () => {
-                  setMustSpin(false);
-                  if (selectedPrize) {
-                    await saveSpinResult(selectedPrize);
-                  }
-                }}
-              />
+              <div className="relative inline-flex items-center justify-center">
+  <Wheel
+    mustStartSpinning={mustSpin}
+    prizeNumber={prizeNumber}
+    data={wheelData}
+    backgroundColors={backgroundColors}
+    textColors={["#ffffff"]}
+    fontSize={9}
+    outerBorderWidth={5}
+    outerBorderColor="#1E4D6B"
+    innerRadius={22}
+    innerBorderWidth={3}
+    innerBorderColor="#C9A84C"
+    radiusLineWidth={1}
+    radiusLineColor="rgba(255,255,255,0.4)"
+    textDistance={68}
+    spinDuration={0.9}
+    onStopSpinning={async () => {
+      setMustSpin(false);
+      if (selectedPrize) {
+        await saveSpinResult(selectedPrize);
+      }
+    }}
+  />
+  {/* Logo center hub overlay */}
+  <div
+    className="absolute pointer-events-none flex items-center justify-center"
+    style={{
+      width: "18%",
+      height: "18%",
+      top: "50%",
+      left: "50%",
+      transform: "translate(-50%, -50%)",
+    }}
+  >
+    <img
+      src="/sa-icon.png"
+      alt="Special Advantage"
+      className="w-full h-full object-contain rounded-full bg-white p-1 shadow-lg"
+      style={{ border: "2px solid #C9A84C" }}
+    />
+  </div>
+</div>
             )}
 
             <button
